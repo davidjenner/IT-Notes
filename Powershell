@@ -1,0 +1,258 @@
+PowerShell Basics – Beginner Command Guide
+
+PowerShell is a task automation and configuration management framework from Microsoft. It consists of a command-line shell and a powerful scripting language built on .NET. Unlike traditional shells, PowerShell works with objects, not just text, making it extremely powerful for system administration and automation.
+
+This guide covers core PowerShell cmdlets every beginner should know, with explanations and examples.
+
+
+There is a guide you can easily copy the code to the clipboard from 
+
+https://powershell-guide.notaku.site/
+
+---
+
+📘 Getting Help & Discovering Commands
+
+Get-Help
+
+Displays help information about cmdlets and PowerShell concepts.
+
+Get-Help Get-Process
+
+What it does:
+Shows documentation, parameters, examples, and usage details for Get-Process.
+
+💡 Tip:
+
+Get-Help Get-Process -Examples
+
+
+---
+
+Get-Command
+
+Lists available cmdlets, functions, aliases, and scripts.
+
+Get-Command
+
+What it does:
+Shows all commands available in your current PowerShell session.
+
+💡 Useful filtering:
+
+Get-Command *service*
+
+
+---
+
+🖥️ Working with Processes & Services
+
+Get-Process
+
+Retrieves processes running on the local or remote machine.
+
+Get-Process
+
+What it does:
+Lists all running processes, including CPU and memory usage.
+
+
+---
+
+Get-Service
+
+Displays services and their current status.
+
+Get-Service
+
+What it does:
+Shows whether services are Running, Stopped, or Paused.
+
+💡 Example:
+
+Get-Service | Where-Object Status -eq "Running"
+
+
+---
+
+🔐 Script Execution & Security
+
+Set-ExecutionPolicy
+
+Controls which PowerShell scripts are allowed to run.
+
+Set-ExecutionPolicy RemoteSigned
+
+What it does:
+Allows locally created scripts to run and requires downloaded scripts to be signed.
+
+⚠️ Best Practice:
+
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
+---
+
+📂 File System Navigation & Management
+
+Get-Item
+
+Gets information about a file or directory.
+
+Get-Item C:\Windows
+
+What it does:
+Returns properties such as size, creation date, and attributes.
+
+
+---
+
+Get-ChildItem
+
+Lists files and folders in a directory.
+
+Get-ChildItem C:\
+
+What it does:
+Equivalent to dir or ls.
+
+💡 Common alias:
+
+ls
+
+
+---
+
+New-Item
+
+Creates new files, folders, or registry entries.
+
+New-Item -Path "C:\NewFolder" -ItemType Directory
+
+What it does:
+Creates a new directory called NewFolder.
+
+
+---
+
+Copy-Item
+
+Copies files or folders.
+
+Copy-Item -Path "C:\file.txt" -Destination "D:\file.txt"
+
+
+---
+
+Move-Item
+
+Moves or renames items.
+
+Move-Item -Path "C:\file.txt" -Destination "D:\file.txt"
+
+
+---
+
+Remove-Item
+
+Deletes files or folders.
+
+Remove-Item -Path "C:\file.txt"
+
+⚠️ Use with caution:
+
+Remove-Item -Path "C:\Folder" -Recurse -WhatIf
+
+
+---
+
+📝 Reading & Writing Files
+
+Get-Content
+
+Reads the contents of a file.
+
+Get-Content -Path "C:\file.txt"
+
+💡 Useful for logs:
+
+Get-Content -Path "log.txt" -Tail 10
+
+
+---
+
+Set-Content
+
+Overwrites content in a file.
+
+Set-Content -Path "C:\file.txt" -Value "Hello, World!"
+
+
+---
+
+🖧 Remote Command Execution
+
+Invoke-Command
+
+Runs commands on remote computers.
+
+Invoke-Command -ComputerName Server01 -ScriptBlock { Get-Process }
+
+What it does:
+Executes commands remotely using PowerShell Remoting (WinRM).
+
+
+---
+
+🧠 Key PowerShell Concepts (Important!)
+
+Objects, Not Text
+
+PowerShell outputs objects, allowing you to filter and manipulate data easily.
+
+Get-Process | Select-Object Name, CPU
+
+
+---
+
+The Pipeline (|)
+
+Passes objects from one command to another.
+
+Get-Service | Where-Object Status -eq "Stopped"
+
+
+---
+
+✅ Summary
+
+These cmdlets form the foundation of PowerShell and allow you to:
+
+Navigate and manage the file system
+
+Control processes and services
+
+Read and write files
+
+Execute commands locally and remotely
+
+Build powerful automation scripts
+
+
+PowerShell scales from simple one-liners to enterprise-grade automation, making it an essential skill for IT support, system administrators, and DevOps engineers.
+
+
+---
+
+If you want, I can also:
+
+Add real-world IT support examples
+
+Turn this into a PowerShell cheatsheet
+
+Expand it into a learning roadmap
+
+Add advanced cmdlets (AD, Intune, M365, Azure)
+
+
+Just say the word.
